@@ -4,7 +4,7 @@ defmodule Cards do
     suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
 
     for suit <- suits, value <- values do
-       "#{value} of #{suit}"
+      "#{value} of #{suit}"
     end
   end
 
@@ -30,14 +30,14 @@ defmodule Cards do
     {status, binary} = File.read(filename)
 
     case status do
-      :ok -> :erlang.binary_to_term binary
+      :ok -> :erlang.binary_to_term(binary)
       :error -> "That file does not exist"
     end
   end
 
   def create_hand(hand_size) do
-    deck = Cards.create_deck
-    deck = Cards.shuffle(deck)
-    hand = Cards.deal(deck, hand_size)
+    Cards.create_deck()
+    |> Cards.shuffle()
+    |> Cards.deal(hand_size)
   end
 end
